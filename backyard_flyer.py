@@ -77,7 +77,7 @@ class BackyardFlyer(Drone):
         """
         if self.flight_state is States.LANDING:
             if ((self.global_position[2] - self.global_home[2] < 0.1) and
-                abs(self.local_position[2]) < 0.01):
+                abs(self.local_position[2]) < 0.05):
                 self.disarming_transition()
 
     def state_callback(self):
@@ -158,6 +158,8 @@ class BackyardFlyer(Drone):
             # increment the index to the next target position
             self.current_waypoint_index += 1
             self.flight_state = States.WAYPOINT
+        else:
+            self.current_waypoint_index = 0
 
 
     def landing_transition(self):
