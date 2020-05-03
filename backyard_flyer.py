@@ -152,14 +152,15 @@ class BackyardFlyer(Drone):
         print("waypoint transition")
 
         self.target_position = self.all_waypoints[self.current_waypoint_index]
-        # print(self.target_position)
+        print('current target position = ', self.target_position)
         if self.current_waypoint_index < len(self.all_waypoints):
             self.cmd_position(self.target_position[0], self.target_position[1], self.target_position[2], self.target_position[3])
             # increment the index to the next target position
             self.current_waypoint_index += 1
-            self.flight_state = States.WAYPOINT
         else:
             self.current_waypoint_index = 0
+        
+        self.flight_state = States.WAYPOINT
 
 
     def landing_transition(self):
